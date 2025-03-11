@@ -186,6 +186,52 @@ type prebuiltInstallInRootProperties struct {
 	Install_in_root *bool
 }
 
+var (
+	etcInstallPathToFactoryList = map[string]android.ModuleFactory{
+		"":                    etc.PrebuiltRootFactory,
+		"avb":                 etc.PrebuiltAvbFactory,
+		"bin":                 etc.PrebuiltBinaryFactory,
+		"bt_firmware":         etc.PrebuiltBtFirmwareFactory,
+		"cacerts":             etc.PrebuiltEtcCaCertsFactory,
+		"dsp":                 etc.PrebuiltDSPFactory,
+		"etc":                 etc.PrebuiltEtcFactory,
+		"etc/dsp":             etc.PrebuiltDSPFactory,
+		"etc/firmware":        etc.PrebuiltFirmwareFactory,
+		"firmware":            etc.PrebuiltFirmwareFactory,
+		"gpu":                 etc.PrebuiltGPUFactory,
+		"first_stage_ramdisk": etc.PrebuiltFirstStageRamdiskFactory,
+		"fonts":               etc.PrebuiltFontFactory,
+		"framework":           etc.PrebuiltFrameworkFactory,
+		"lib":                 etc.PrebuiltRenderScriptBitcodeFactory,
+		"lib64":               etc.PrebuiltRenderScriptBitcodeFactory,
+		"lib/rfsa":            etc.PrebuiltRFSAFactory,
+		"media":               etc.PrebuiltMediaFactory,
+		"odm":                 etc.PrebuiltOdmFactory,
+		"optee":               etc.PrebuiltOpteeFactory,
+		"overlay":             etc.PrebuiltOverlayFactory,
+		"priv-app":            etc.PrebuiltPrivAppFactory,
+		"radio":               etc.PrebuiltRadioFactory,
+		"sbin":                etc.PrebuiltSbinFactory,
+		"system":              etc.PrebuiltSystemFactory,
+		"res":                 etc.PrebuiltResFactory,
+		"rfs":                 etc.PrebuiltRfsFactory,
+		"tts":                 etc.PrebuiltVoicepackFactory,
+		"tvconfig":            etc.PrebuiltTvConfigFactory,
+		"tvservice":           etc.PrebuiltTvServiceFactory,
+		"usr/share":           etc.PrebuiltUserShareFactory,
+		"usr/hyphen-data":     etc.PrebuiltUserHyphenDataFactory,
+		"usr/keylayout":       etc.PrebuiltUserKeyLayoutFactory,
+		"usr/keychars":        etc.PrebuiltUserKeyCharsFactory,
+		"usr/srec":            etc.PrebuiltUserSrecFactory,
+		"usr/idc":             etc.PrebuiltUserIdcFactory,
+		"vendor":              etc.PrebuiltVendorFactory,
+		"vendor_dlkm":         etc.PrebuiltVendorDlkmFactory,
+		"vendor_overlay":      etc.PrebuiltVendorOverlayFactory,
+		"wallpaper":           etc.PrebuiltWallpaperFactory,
+		"wlc_upt":             etc.PrebuiltWlcUptFactory,
+	}
+)
+
 func generatedPrebuiltEtcModuleName(partition, srcDir, destDir string, count int) string {
 	// generated module name follows the pattern:
 	// <install partition>-<src file path>-<relative install path from partition root>-<number>
